@@ -8,6 +8,10 @@ class ContactSubmit(BaseModel):
     name: str
     email: str
     phone: str
+    position: str
+    location: str
+    time_zone: int
+    is_main: bool
     status: int
 
 

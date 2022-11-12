@@ -1,12 +1,28 @@
-from typing import List
+from typing import List, Optional
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Response
 
-from models.notes import Note
-from ports.input.note import ContactInputPort
+from models.notes import Note, NoteSubmit
+from ports.input import NoteInputPort
+from utils import ResponseError
+
 notes_router = APIRouter(tags=["notes"])
 
 
-@notes_router.get("/notes/", name="get_notes", response_model=List[Note])
-async def get():
-    return ContactInputPort.get_all()
+@notes_router.get("/notes/{note_id}", name="get_note", response_model=Note)
+async def get(note_id: int) -> Optional[Note]:
+    try:
+        return NoteInputPort.get_by_id(note_id)
+    except ResponseError as re:
+        return Response(content=re.error_msg, status_code=re.status_code)
+
+
+@notes_router.post("/notes/", response_model=Note)
+async def post(note: NoteSubmit) -> Note:
+    return NoteInputPort.create(note)
+
+
+@notes_router.put("/notes/{item_id}", response_model=Note)
+async def put(item_id: int, note: NoteSubmit) -> Note:
+    note = Note(id=item_id)
+    NoteInputPort.update(note)

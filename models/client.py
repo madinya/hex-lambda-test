@@ -8,8 +8,9 @@ from models.project import Project
 
 class ClientSubmit(BaseModel):
     name: str
-    projects: Optional[List[Project]]
     status: int
+    industry: int
+    projects: Optional[List[Project]]
 
 
 class Client(ClientSubmit):

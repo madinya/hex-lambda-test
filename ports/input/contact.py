@@ -1,4 +1,4 @@
-from ports.input.base_input import BaseInputPort
+from ports.input import BaseInputPort
 from ports.output.in_memory.contact_port import ContactPort
 
 
