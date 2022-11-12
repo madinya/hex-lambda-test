@@ -13,7 +13,7 @@ async def get() -> List[Project]:
 
 
 @project_router.get("/projects/{project_id}", name="get_client", response_model=Project)
-async def get(project_id: int) -> Optional[Project]:
+async def get(project_id: int):
     try:
         return ProjectInputPort.get_by_id(project_id)
     except ResponseError as re:
@@ -21,14 +21,14 @@ async def get(project_id: int) -> Optional[Project]:
 
 
 @project_router.post("/projects/", response_model=Project)
-async def post(client: ProjectSubmit) -> Project:
-    return ProjectInputPort.create(client)
+async def post(client: ProjectSubmit):
+    return ProjectInputPort.create(client.__dict__)
 
 
 @project_router.put("/projects/{item_id}", response_model=Project)
-async def put(item_id: int, project: ProjectSubmit) -> Project:
+async def put(item_id: int, project: ProjectSubmit) :
     project = Project(id=item_id)
-    ProjectInputPort.update(project)
+    ProjectInputPort.update(project.__dict__)
 
 
 @project_router.get("/projects/{int}/notes", response_model=List[Note])

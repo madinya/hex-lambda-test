@@ -13,7 +13,7 @@ async def get() -> List[Role]:
 
 
 @roles_router.get("/roles/{project_id}", name="get_client", response_model=Role)
-async def get(project_id: int) -> Optional[Role]:
+async def get(project_id: int):
     try:
         return RoleInputPort.get_by_id(project_id)
     except ResponseError as re:
@@ -21,14 +21,14 @@ async def get(project_id: int) -> Optional[Role]:
 
 
 @roles_router.post("/roles/", response_model=Role)
-async def post(client: RoleSubmit) -> Role:
-    return RoleInputPort.create(client)
+async def post(role: RoleSubmit):
+    return RoleInputPort.create(role.__dict__)
 
 
 @roles_router.put("/roles/{item_id}", response_model=Role)
-async def put(item_id: int, project: RoleSubmit) -> Role:
-    project = Role(id=item_id)
-    RoleInputPort.update(project)
+async def put(item_id: int, role: RoleSubmit):
+    role = Role(id=item_id)
+    RoleInputPort.update(role.__dict__)
 
 
 @roles_router.get("/roles/{int}/notes", response_model=List[Note])

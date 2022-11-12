@@ -32,6 +32,6 @@ async def put(item_id: int, contact: ContactSubmit):
     ContactInputPort.update(contact.__dict__)
 
 
-@contacts_router.get("/contacts/{int}/contacts", response_model=List[Contact])
+@contacts_router.get("/contacts/{int}/notes", response_model=List[Contact])
 async def get() -> List[Contact]:
     return ContactInputPort.get_all()
