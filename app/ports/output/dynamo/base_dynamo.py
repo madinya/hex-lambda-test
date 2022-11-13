@@ -1,5 +1,5 @@
 from typing import Any
-from ports.output.base_output import BaseOutputPort
+from app.ports.output.base_output import BaseOutputPort
 
 
 class DynamoDbPort(BaseOutputPort):

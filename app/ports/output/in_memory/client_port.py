@@ -7,27 +7,7 @@ from app.utils.ResponseError import ResponseError
 
 
 class ClientPort(InMemoryPort):
-    data_source = [Client(id=1, name="Client 1", status=1,  industry=1,
-                          projects=[
-                              Project(id=1,
-                                      name="P1",
-                                      inv_code="",
-                                      description="",
-                                      status=1,
-                                      client_id=1,
-                                      reporting_to=1,
-                                      owner="",
-                                      created_date=datetime.now()),
-                              Project(id=2,
-                                      name="P1",
-                                      inv_code="",
-                                      description="",
-                                      status=1,
-                                      client_id=1,
-                                      reporting_to=1,
-                                      owner="",
-                                      created_date=datetime.now())],
-                          created_date=datetime.now()),
+    data_source = [Client(id=1, name="Client 1", status=1, industry=1, created_date=datetime.now()),
                    Client(id=2, name="Client 2", status=2, industry=1, created_date=datetime.now()),
                    Client(id=3, name="Client 3", status=1, industry=2, created_date=datetime.now()),
                    Client(id=4, name="Client 4", status=1, industry=3, created_date=datetime.now())]

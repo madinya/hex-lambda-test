@@ -1,9 +1,6 @@
 import datetime
-from typing import Optional, List
 
 from pydantic import BaseModel
-
-from app.models.project import Project
 
 
 class ClientBase(BaseModel):
