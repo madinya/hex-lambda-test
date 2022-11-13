@@ -3,7 +3,7 @@ from typing import List
 import fastapi
 from fastapi import APIRouter
 from app.ports.input.client import ClientInputPort
-from app.models import Client, ClientSubmit, Contact ,Note, Project
+from app.models import Client, ClientBase, Contact ,Note, Project
 from app.utils.ResponseError import ResponseError
 
 clients = APIRouter()
@@ -15,12 +15,12 @@ async def get():
 
 
 @clients.post("/", response_model=Client)
-async def post(client: ClientSubmit):
+async def post(client: ClientBase):
     return ClientInputPort.create(client.__dict__)
 
 
 @clients.put("/{client_id}", response_model=Client)
-async def put(client_id: int, client: ClientSubmit):
+async def put(client_id: int, client: ClientBase):
     client = Client(client_id=client_id)
     return ClientInputPort.update()
 
@@ -33,7 +33,9 @@ async def delete(client_id: int):
 @clients.get("/{client_id}", name="get_client", response_model=Client)
 async def get(client_id: int):
     try:
-        return ClientInputPort.get_by_id(client_id)
+        model = Client
+        response = ClientInputPort.get_by_id(client_id)
+        return response
     except ResponseError as re:
         return fastapi.Response(content=re.error_msg, status_code=re.status_code)
 

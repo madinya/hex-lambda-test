@@ -2,7 +2,7 @@ from typing import List, Optional
 
 from fastapi import APIRouter, Response
 from app.utils import ResponseError
-from app.models.contact import Contact, ContactSubmit
+from app.models.contact import Contact, ContactBase
 from app.ports.input.contact import ContactInputPort
 
 contacts = APIRouter()
@@ -14,12 +14,12 @@ async def get():
 
 
 @contacts.post("/", response_model=Contact)
-async def post(contact: ContactSubmit):
+async def post(contact: ContactBase):
     return ContactInputPort.create(contact.__dict__)
 
 
 @contacts.put("/{contact_id}", response_model=Contact)
-async def put(contact_id: int, contact: ContactSubmit):
+async def put(contact_id: int, contact: ContactBase):
     contact = Contact(contact_id=contact_id)
     ContactInputPort.update(contact.__dict__)
 

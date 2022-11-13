@@ -1,7 +1,7 @@
 from typing import List, Optional
 
 from fastapi import APIRouter, Response
-from app.models import Project, ProjectSubmit, Note
+from app.models import Project, ProjectBase, Note
 from app.ports.input import ProjectInputPort
 from app.utils import ResponseError
 
@@ -14,12 +14,12 @@ async def get() -> List[Project]:
 
 
 @project.post("/", response_model=Project)
-async def post(client: ProjectSubmit):
+async def post(client: ProjectBase):
     return ProjectInputPort.create(client.__dict__)
 
 
 @project.put("/{project_id}", response_model=Project)
-async def put(project_id: int, project: ProjectSubmit):
+async def put(project_id: int, project: ProjectBase):
     project = Project(id=project_id)
     ProjectInputPort.update(project.__dict__)
 

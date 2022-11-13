@@ -1,8 +1,7 @@
 from datetime import datetime
 from typing import List, Optional
 
-from app.models.client import Client, ClientSubmit
-from app.models.project import Project
+from app.models import Client, ClientBase, Project
 from app.ports.output.in_memory.base_in_memory import InMemoryPort
 from app.utils.ResponseError import ResponseError
 
@@ -34,7 +33,7 @@ class ClientPort(InMemoryPort):
                    Client(id=4, name="Client 4", status=1, industry=3, created_date=datetime.now())]
 
     @classmethod
-    def create(cls, entry: ClientSubmit) -> Client:
+    def create(cls, entry: ClientBase) -> Client:
         client = Client(id=len(cls.data_source) + 1, name=entry.name, status=entry.status, created_date=datetime.now())
         cls.data_source.append(client)
         return client

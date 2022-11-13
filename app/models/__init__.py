@@ -1,5 +1,5 @@
-from .contact import Contact, ContactSubmit
-from .notes import Note, NoteSubmit
-from .project import Project, ProjectSubmit
-from .roles import Role, RoleSubmit
-from .client import Client, ClientSubmit
+from .contact import Contact, ContactBase
+from .notes import Note, NoteBase
+from .project import Project, ProjectBase
+from .roles import Role, RoleBase
+from .client import Client, ClientBase

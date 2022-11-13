@@ -1,6 +1,3 @@
-from typing import List
-
-from app.models import Contact, Note
 from app.ports.input import BaseInputPort
 from app.ports.output.in_memory import ClientPort, ContactPort, NotePort, ProjectPort
 

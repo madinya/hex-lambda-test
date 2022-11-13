@@ -3,7 +3,7 @@ import datetime
 from pydantic import BaseModel
 
 
-class ContactSubmit(BaseModel):
+class ContactBase(BaseModel):
     client_id: int
     name: str
     email: str
@@ -15,6 +15,6 @@ class ContactSubmit(BaseModel):
     status: int
 
 
-class Contact(ContactSubmit):
+class Contact(ContactBase):
     id: int
     created_date: datetime.datetime

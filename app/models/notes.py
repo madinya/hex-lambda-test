@@ -3,11 +3,11 @@ from datetime import datetime
 from pydantic import BaseModel
 
 
-class NoteSubmit(BaseModel):
+class NoteBase(BaseModel):
     client_id: int
     description: str
 
 
-class Note(NoteSubmit):
+class Note(NoteBase):
     id: int
     created_date: datetime

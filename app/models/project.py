@@ -3,7 +3,7 @@ import datetime
 from pydantic import BaseModel
 
 
-class ProjectSubmit(BaseModel):
+class ProjectBase(BaseModel):
     name: str
     inv_code: str
     description: str
@@ -13,6 +13,6 @@ class ProjectSubmit(BaseModel):
     owner: str
 
 
-class Project(ProjectSubmit):
+class Project(ProjectBase):
     id: int
     created_date: datetime.datetime

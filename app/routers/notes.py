@@ -2,7 +2,7 @@ from typing import List
 
 from fastapi import APIRouter, Response
 
-from app.models.notes import Note, NoteSubmit
+from app.models.notes import Note, NoteBase
 from app.ports.input import NoteInputPort
 from app.utils import ResponseError
 
@@ -23,12 +23,12 @@ async def get(note_id: int):
 
 
 @notes.post("/", response_model=Note)
-async def post(note: NoteSubmit):
+async def post(note: NoteBase):
     return NoteInputPort.create(note.__dict__)
 
 
 @notes.put("/{note_id}", response_model=Note)
-async def put(note_id: int, note: NoteSubmit):
+async def put(note_id: int, note: NoteBase):
     note = Note(id=note_id)
     NoteInputPort.update(note.__dict__)
 

@@ -1,7 +1,7 @@
 from typing import List, Optional
 
 from fastapi import APIRouter, Response
-from app.models import Role, Contact, RoleSubmit, Note
+from app.models import Role, Contact, RoleBase, Note
 from app.ports.input import RoleInputPort
 from app.utils import ResponseError
 
@@ -14,12 +14,12 @@ async def get() -> List[Role]:
 
 
 @roles.post("/", response_model=Role)
-async def post(role: RoleSubmit):
+async def post(role: RoleBase):
     return RoleInputPort.create(role.__dict__)
 
 
 @roles.put("/{role_id}", response_model=Role)
-async def put(role_id: int, role: RoleSubmit):
+async def put(role_id: int, role: RoleBase):
     role = Role(id=role_id)
     RoleInputPort.update(role.__dict__)
 
