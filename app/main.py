@@ -1,13 +1,12 @@
 from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
-from app.routers import clients_router, notes_router, contacts_router, index, roles_router, project_router
+from .events.register import register_routers
+from .config.env_manager import get_settings
 
-app = FastAPI(openapi_url=f'/stage/openapi.json', docs_url=f'/stage/docs')
-app.mount("/static", StaticFiles(directory="static"), name="static")
+EnvManager = get_settings()
 
-app.include_router(index)
-app.include_router(notes_router)
-app.include_router(contacts_router)
-app.include_router(clients_router)
-app.include_router(roles_router)
-app.include_router(project_router)
+app = FastAPI(title="IOET MVP Clients App",
+              root_path=EnvManager.STG_NAME,
+              openapi_url=f'{EnvManager.STG_NAME}/openapi.json',
+              docs_url=f'{EnvManager.STG_NAME}/docs')
+
+register_routers(app, 'app.routers')

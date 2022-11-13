@@ -3,10 +3,10 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 
 index = APIRouter()
-templates = Jinja2Templates(directory="templates")
 
 
-@index.get("/", response_class=HTMLResponse)
+@index.get("/")
 async def get(request: Request):
-    r = {"request": request}
-    return templates.TemplateResponse("index.html", r)
+    return {"app": "clients app",
+            "version": "0.1",
+            "backend": "lambda"}

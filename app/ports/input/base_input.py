@@ -26,3 +26,7 @@ class BaseInputPort:
             return cls.output_port.update(_id, new_values), None
         except RuntimeError as ex:
             return None, str(ex)
+
+    @classmethod
+    def delete(cls, _id: Any) -> Any:
+        return cls.output_port.delete(_id)

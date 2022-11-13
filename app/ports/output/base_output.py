@@ -18,3 +18,7 @@ class BaseOutputPort:
     @classmethod
     def update(cls, _id: Any, new_values: dict) -> Any:
         return {"response": "Updating data"}
+
+    @classmethod
+    def delete(cls, _id: Any) -> Any:
+        return {"response": "Deleting data"}
