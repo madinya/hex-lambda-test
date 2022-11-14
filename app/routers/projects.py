@@ -15,13 +15,13 @@ async def get() -> List[Project]:
 
 @project.post("/", response_model=Project)
 async def post(client: ProjectBase):
-    return ProjectInputPort.create(client.__dict__)
+    return ProjectInputPort.create(client)
 
 
 @project.put("/{project_id}", response_model=Project)
 async def put(project_id: int, project: ProjectBase):
     project = Project(id=project_id)
-    ProjectInputPort.update(project.__dict__)
+    ProjectInputPort.update(project)
 
 
 @project.delete("/{project_id}", response_model=Project)

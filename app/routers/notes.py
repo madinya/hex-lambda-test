@@ -24,13 +24,13 @@ async def get(note_id: int):
 
 @notes.post("/", response_model=Note)
 async def post(note: NoteBase):
-    return NoteInputPort.create(note.__dict__)
+    return NoteInputPort.create(note)
 
 
 @notes.put("/{note_id}", response_model=Note)
 async def put(note_id: int, note: NoteBase):
     note = Note(id=note_id)
-    NoteInputPort.update(note.__dict__)
+    NoteInputPort.update(note)
 
 
 @notes.delete("/{note_id}", response_model=Note)

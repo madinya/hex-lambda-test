@@ -14,7 +14,11 @@ class ClientPort(InMemoryPort):
 
     @classmethod
     def create(cls, entry: ClientBase) -> Client:
-        client = Client(id=len(cls.data_source) + 1, name=entry.name, status=entry.status, created_date=datetime.now())
+        client = Client(id=len(cls.data_source) + 1,
+                        name=entry.name,
+                        status=entry.status,
+                        industry=entry.industry,
+                        created_date=datetime.now())
         cls.data_source.append(client)
         return client
 

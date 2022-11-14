@@ -15,13 +15,13 @@ async def get():
 
 @contacts.post("/", response_model=Contact)
 async def post(contact: ContactBase):
-    return ContactInputPort.create(contact.__dict__)
+    return ContactInputPort.create(contact)
 
 
 @contacts.put("/{contact_id}", response_model=Contact)
 async def put(contact_id: int, contact: ContactBase):
     contact = Contact(contact_id=contact_id)
-    ContactInputPort.update(contact.__dict__)
+    ContactInputPort.update(contact)
 
 
 @contacts.delete("/{contact_id}", response_model=Contact)

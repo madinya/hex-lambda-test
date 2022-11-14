@@ -16,7 +16,7 @@ async def get():
 
 @clients.post("/", response_model=Client)
 async def post(client: ClientBase):
-    return ClientInputPort.create(client.__dict__)
+    return ClientInputPort.create(client)
 
 
 @clients.put("/{client_id}", response_model=Client)

@@ -15,13 +15,13 @@ async def get() -> List[Role]:
 
 @roles.post("/", response_model=Role)
 async def post(role: RoleBase):
-    return RoleInputPort.create(role.__dict__)
+    return RoleInputPort.create(role)
 
 
 @roles.put("/{role_id}", response_model=Role)
 async def put(role_id: int, role: RoleBase):
     role = Role(id=role_id)
-    RoleInputPort.update(role.__dict__)
+    RoleInputPort.update(role)
 
 
 @roles.delete("/{role_id}", response_model=Role)
