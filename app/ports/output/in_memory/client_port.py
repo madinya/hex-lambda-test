@@ -7,10 +7,10 @@ from app.utils.ResponseError import ResponseError
 
 
 class ClientPort(InMemoryPort):
-    data_source = [Client(id=1, name="Client 1", status=1, industry=1, created_date=datetime.now()),
-                   Client(id=2, name="Client 2", status=2, industry=1, created_date=datetime.now()),
-                   Client(id=3, name="Client 3", status=1, industry=2, created_date=datetime.now()),
-                   Client(id=4, name="Client 4", status=1, industry=3, created_date=datetime.now())]
+    data_source = [Client(id=1, name="YE", status=1, industry=1, created_date=datetime.now()),
+                   Client(id=2, name="GASE", status=2, industry=1, created_date=datetime.now()),
+                   Client(id=3, name="Barwy Karper", status=1, industry=2, created_date=datetime.now()),
+                   Client(id=4, name="Staffing Past", status=1, industry=3, created_date=datetime.now())]
 
     @classmethod
     def create(cls, entry: ClientBase) -> Client:
