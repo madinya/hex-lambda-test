@@ -3,4 +3,4 @@ from .contacts import contacts
 from .notes import notes
 from .index import index
 from .roles import roles
-from .projects import project
+from .projects import projects
